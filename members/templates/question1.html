@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static  %}
+    <script src="{% static 'disableContextMenu.js' %}"></script>
+    <title>Submit Data</title>
+</head>
+<body>
+    <h2>Question 1</h2>
+    {% if messages %}
+            {% for message in messages%}
+            {{message}}
+            {% endfor %}
+        {% endif %}
+    <form method="post" action="/question1/{request.user}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">Your answer </label>
+            <input type="text" class="form-control" name="answer" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>
